@@ -1,0 +1,140 @@
+:root {
+  --ease: cubic-bezier(.22, .8, .24, 1);
+  --bg: #1C1026;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  height: 100%;
+  background: var(--bg);
+  overflow: hidden;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+body { cursor: pointer; }
+
+/* ---------- layers ---------- */
+.bg, .stage, #hero {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.bg { z-index: 0; }
+.stage { z-index: 1; }
+#hero { overflow: visible; }
+#hero text { font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif; letter-spacing: -.005em; }
+
+/* ---------- background ---------- */
+.aurora {
+  opacity: 0;
+  animation: fade 2.2s ease-out .05s forwards, drift 18s ease-in-out 2.2s infinite alternate;
+  transform-box: view-box;
+  transform-origin: 50% 50%;
+}
+.star {
+  opacity: 0;
+  animation: fade 1s ease-out 1.6s forwards, twinkle var(--d) ease-in-out 2.6s infinite alternate;
+}
+
+/* ---------- top-to-bottom reveal ---------- */
+.wipe { animation: wipe 1.5s var(--ease) forwards; }
+.w-planet { animation-duration: 1.8s; animation-delay: .35s; }
+.w-logo   { animation-duration: 1.6s; animation-delay: .95s; }
+.w-t1     { animation-delay: 1.65s; }
+.w-t2     { animation-delay: 1.95s; }
+.w-t3     { animation-delay: 2.2s; }
+
+.reveal {
+  transform-box: fill-box;
+  transform-origin: 50% 50%;
+  animation: drop 1.6s var(--ease) both;
+}
+.r-planet { animation-duration: 2s; animation-delay: .35s; --from: -70px; }
+.r-logo   { animation-duration: 1.8s; animation-delay: .95s; --from: -90px; }
+.r-t1     { animation-delay: 1.65s; --from: -22px; }
+.r-t2     { animation-delay: 1.95s; --from: -16px; }
+.r-t3     { animation: drop 1.4s var(--ease) 2.2s both, pulse 2.8s ease-in-out 3.8s infinite; --from: -12px; }
+
+/* gentle idle motion once everything is in */
+.float, .float-slow { transform-box: fill-box; transform-origin: 50% 50%; }
+.float      { animation: float 7s ease-in-out 2.8s infinite; }
+.float-slow { animation: float-slow 9s ease-in-out 2.4s infinite; }
+
+/* ---------- nav ---------- */
+.nav {
+  position: fixed;
+  z-index: 20;
+  top: clamp(14px, 2vw, 24px);
+  left: clamp(16px, 2.4vw, 28px);
+}
+.btn {
+  display: block;
+  width: 44px;
+  height: 41px;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  opacity: 0;
+  animation: drop-html 1s var(--ease) both;
+  transition: transform .25s var(--ease), filter .25s;
+}
+.btn svg { width: 100%; height: 100%; display: block; }
+.btn-home { animation-delay: .1s; }
+.btn-menu { animation-delay: .2s; width: 43px; }
+.btn:hover { transform: translateY(-2px) scale(1.06); filter: drop-shadow(0 0 10px rgba(182, 183, 252, .45)); }
+.btn:focus-visible { outline: 2px solid #B6B7FC; outline-offset: 3px; border-radius: 50%; }
+
+/* click ripple */
+.ripple {
+  position: fixed;
+  z-index: 3;
+  width: 16px;
+  height: 16px;
+  margin: -8px 0 0 -8px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(252, 221, 236, .7);
+  pointer-events: none;
+  animation: ripple .9s var(--ease) forwards;
+}
+
+/* ---------- keyframes ---------- */
+@keyframes fade { to { opacity: 1; } }
+@keyframes wipe { to { transform: translateY(calc(var(--h) * 3)); } }
+@keyframes drop {
+  from { transform: translateY(var(--from, -40px)); }
+  to   { transform: translateY(0); }
+}
+@keyframes drop-html {
+  from { opacity: 0; transform: translateY(-14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50%      { transform: translateY(-10px) rotate(-1.2deg); }
+}
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50%      { transform: translateY(-6px) scale(1.015); }
+}
+@keyframes drift {
+  from { transform: translate(0, 0) scale(1); }
+  to   { transform: translate(-18px, 10px) scale(1.04); }
+}
+@keyframes twinkle {
+  from { opacity: 1; }
+  to   { opacity: var(--o); }
+}
+@keyframes pulse {
+  0%, 100% { fill-opacity: .5; }
+  50%      { fill-opacity: .9; }
+}
+@keyframes ripple {
+  to { transform: scale(9); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-delay: 0s !important; animation-iteration-count: 1 !important; }
+}

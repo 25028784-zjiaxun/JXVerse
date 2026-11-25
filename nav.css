@@ -1,0 +1,220 @@
+/* Shared top-left Home + animated expanding 3-dot pill navigation */
+.jx-nav {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  position: relative;
+}
+
+.jx-home {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: #E5E4E8;
+  color: #1D162E;
+  text-decoration: none;
+  flex: 0 0 auto;
+  box-shadow: 0 6px 18px rgba(10, 6, 18, .28);
+  transition: transform .28s cubic-bezier(.22, .8, .24, 1), background .28s ease, color .28s ease, box-shadow .28s ease;
+}
+.jx-home svg { width: 22px; height: 22px; display: block; }
+.jx-home:hover {
+  transform: translateY(-2px) scale(1.06);
+  background: #FFFFFF;
+  box-shadow: 0 10px 24px rgba(182, 183, 252, .38);
+}
+.jx-home:focus-visible,
+.jx-dots:focus-visible,
+.jx-item:focus-visible {
+  outline: 2px solid #B6B7FC;
+  outline-offset: 3px;
+}
+
+/* Expanding pill container */
+.jx-pill {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  height: 42px;
+  width: 42px;
+  border-radius: 999px;
+  background: #E5E4E8;
+  box-shadow: 0 6px 18px rgba(10, 6, 18, .28);
+  overflow: hidden;
+  transition: width .44s cubic-bezier(.22, 1, .36, 1), background .3s ease, box-shadow .3s ease;
+}
+.jx-pill:hover {
+  box-shadow: 0 10px 24px rgba(182, 183, 252, .34);
+}
+.jx-pill.open {
+  width: 196px;
+  background: #E5E4E8;
+  overflow: visible;
+}
+
+/* 3-dots toggle button inside left end of pill */
+.jx-dots {
+  position: relative;
+  z-index: 2;
+  flex: 0 0 42px;
+  width: 42px;
+  height: 42px;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: #1D162E;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  cursor: pointer;
+  padding: 0;
+  transition: background .32s cubic-bezier(.22, .8, .24, 1), color .32s ease, transform .28s cubic-bezier(.22, .8, .24, 1);
+}
+.jx-dots i {
+  width: 6.5px;
+  height: 6.5px;
+  border-radius: 50%;
+  background: currentColor;
+  display: block;
+  transition: transform .32s cubic-bezier(.22, 1, .36, 1);
+}
+.jx-pill:not(.open) .jx-dots:hover {
+  background: #FFFFFF;
+}
+.jx-pill.open .jx-dots {
+  background: #1D162E;
+  color: #E5E4E8;
+}
+.jx-pill.open .jx-dots:hover {
+  background: #2B2044;
+}
+
+/* Revealed icon group */
+.jx-items {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 12px 0 8px;
+  pointer-events: none;
+}
+.jx-pill.open .jx-items {
+  pointer-events: auto;
+}
+
+.jx-item {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: #1D162E;
+  text-decoration: none;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateX(-14px) scale(.55);
+  transition:
+    opacity .26s ease,
+    transform .42s cubic-bezier(.22, 1.25, .36, 1),
+    background .2s ease,
+    color .2s ease;
+}
+.jx-item svg { width: 22px; height: 22px; display: block; }
+
+.jx-pill.open .jx-item {
+  opacity: 1;
+  transform: translateX(0) scale(1);
+}
+.jx-pill.open .jx-item:nth-child(1) { transition-delay: .05s; }
+.jx-pill.open .jx-item:nth-child(2) { transition-delay: .11s; }
+.jx-pill.open .jx-item:nth-child(3) { transition-delay: .17s; }
+
+.jx-item:hover {
+  background: rgba(29, 22, 46, .12);
+  transform: translateY(-1px) scale(1.08);
+}
+.jx-item.is-current {
+  background: rgba(29, 22, 46, .14);
+}
+
+/* Crisp hover label under each icon */
+.jx-item::after {
+  content: attr(data-label);
+  position: absolute;
+  left: 50%;
+  top: calc(100% + 9px);
+  transform: translate(-50%, -4px);
+  padding: 4px 9px;
+  border-radius: 99px;
+  background: rgba(29, 22, 46, .92);
+  color: #EDE9F6;
+  border: 1px solid rgba(182, 183, 252, .24);
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: .03em;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .2s ease, transform .22s cubic-bezier(.22, .8, .24, 1);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, .4);
+}
+.jx-item:hover::after,
+.jx-item:focus-visible::after {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+/* Contact mini popover (for phone icon until dedicated contact page is built) */
+.jx-contact-pop {
+  position: absolute;
+  left: 54px;
+  top: 54px;
+  min-width: 220px;
+  padding: 14px 16px;
+  border-radius: 14px;
+  background: rgba(29, 22, 46, .94);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(182, 183, 252, .24);
+  box-shadow: 0 22px 44px -12px rgba(0, 0, 0, .65);
+  color: #EDE9F6;
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: 13px;
+  z-index: 60;
+}
+.jx-contact-pop[hidden] { display: none; }
+.jx-contact-pop strong {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: #FCDDEC;
+  margin-bottom: 4px;
+}
+.jx-contact-pop p {
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: rgba(237, 233, 246, .74);
+}
+.jx-contact-pop a {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 10px;
+  padding: 6px 12px;
+  border-radius: 99px;
+  background: rgba(182, 183, 252, .16);
+  color: #EDE9F6;
+  text-decoration: none;
+  font-size: 12px;
+  transition: background .2s ease;
+}
+.jx-contact-pop a:hover { background: rgba(252, 221, 236, .24); color: #FCDDEC; }
+
+@media (prefers-reduced-motion: reduce) {
+  .jx-pill, .jx-dots, .jx-item, .jx-home { transition-duration: .15s; }
+}

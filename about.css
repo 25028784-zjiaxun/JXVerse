@@ -1,0 +1,448 @@
+:root {
+  --bg: #180D24;
+  --ink: #EDE9F6;
+  --muted: rgba(237, 233, 246, .74);
+  --accent: #B6B7FC;
+  --pink: #FCDDEC;
+  --ease: cubic-bezier(.22, .8, .24, 1);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { background: #11081A; }
+body {
+  min-height: 100vh;
+  min-height: 100svh;
+  background: radial-gradient(85% 90% at 25% 22%, #2B163E 0%, #180D24 52%, #11081A 100%);
+  color: var(--ink);
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* ---------- cosmic background ---------- */
+.sky { position: fixed; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
+.nebula { position: absolute; border-radius: 50%; filter: blur(110px); }
+.n1 { width: 54vw; height: 44vw; left: -14vw; top: -16vw; background: #8F8DB8; opacity: .34; }
+.n2 { width: 60vw; height: 40vw; left: 30vw; top: -20vw; background: #B2468D; opacity: .36; }
+.n3 { width: 52vw; height: 46vw; right: -14vw; top: 36vh; background: #453970; opacity: .44; }
+.n4 { width: 48vw; height: 40vw; left: -12vw; bottom: -16vh; background: #4C1E3C; opacity: .48; }
+
+.bg-orbits { position: absolute; inset: 0; width: 100%; height: 100%; }
+.bg-word {
+  position: absolute;
+  left: 41vw;
+  top: 1.5vh;
+  font-family: "Syne", sans-serif;
+  font-weight: 700;
+  font-size: clamp(96px, 13vw, 192px);
+  letter-spacing: .04em;
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 1.2px rgba(252, 221, 236, .06);
+  white-space: nowrap;
+  user-select: none;
+}
+#stars { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+/* ---------- top bar ---------- */
+.top {
+  position: absolute;
+  z-index: 40;
+  inset: 0 0 auto 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: clamp(14px, 2vw, 24px) clamp(16px, 2.8vw, 40px);
+  pointer-events: none;
+}
+.top > * { pointer-events: auto; }
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--ink);
+  text-decoration: none;
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  letter-spacing: .04em;
+}
+.brand img { width: 30px; height: 30px; border-radius: 8px; }
+
+/* ---------- main 3-band cosmic layout ---------- */
+.about-page {
+  position: relative;
+  z-index: 2;
+  max-width: 1360px;
+  min-height: 100vh;
+  min-height: 100svh;
+  margin: 0 auto;
+  padding: clamp(66px, 7vh, 88px) clamp(24px, 4vw, 56px) clamp(24px, 3vh, 44px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: clamp(20px, 2.6vh, 36px);
+}
+
+/* ---------- Band 1: Hero (Saturn-ringed portrait + warm Hi! greeting) ---------- */
+.hero-band {
+  display: grid;
+  grid-template-columns: minmax(320px, 446px) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(28px, 3.6vw, 54px);
+  transition: opacity .85s var(--ease), transform .95s var(--ease);
+}
+
+.portrait-portal {
+  position: relative;
+  width: min(100%, clamp(340px, 31vw, 446px));
+  aspect-ratio: 446 / 396;
+  margin: 0 auto;
+  display: grid;
+  place-items: center;
+}
+
+.portal-corona {
+  position: absolute;
+  width: 90%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(252, 221, 236, .58) 56%, rgba(178, 70, 141, .30) 80%, rgba(28, 16, 38, 0) 100%);
+  filter: blur(28px);
+  pointer-events: none;
+}
+
+.ring-back,
+.ring-front {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: visible;
+}
+.ring-back { z-index: 1; }
+.ring-front { z-index: 3; }
+
+.orb-sphere {
+  position: relative;
+  z-index: 2;
+  width: 81.4%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  overflow: hidden;
+  background: linear-gradient(180deg, #522041 0%, #9B6B82 65%, #E6DAC4 100%);
+  border: 1.5px solid rgba(252, 221, 236, .55);
+  box-shadow: 0 24px 56px -18px rgba(8, 3, 16, .75);
+}
+
+.orb-light {
+  position: absolute;
+  width: 88%;
+  height: 88%;
+  left: 6%;
+  top: 12%;
+  border-radius: 50%;
+  background: rgba(242, 232, 213, .74);
+  filter: blur(28px);
+  pointer-events: none;
+}
+
+.orb-photo {
+  position: relative;
+  z-index: 1;
+  width: 134%;
+  height: 131%;
+  max-width: none;
+  margin-left: -21%;
+  margin-top: 4%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+
+.orb-rim {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(24, 13, 36, 0) 68%, rgba(24, 13, 36, .52) 100%);
+  pointer-events: none;
+}
+
+.hero-copy {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(10px, 1.3vh, 14px);
+}
+
+.band-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.mono-tag {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-weight: 400;
+  font-size: clamp(12.5px, 1.05vw, 15px);
+  letter-spacing: .14em;
+  color: rgba(182, 183, 252, .92);
+  text-transform: uppercase;
+}
+.mono-tag.pink { color: rgba(252, 221, 236, .88); }
+
+.hero-name {
+  display: flex;
+  flex-direction: column;
+  margin-top: 2px;
+}
+.hero-name .hi {
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 300;
+  font-size: clamp(28px, 3.05vw, 44px);
+  line-height: 1.12;
+  letter-spacing: .02em;
+  color: rgba(252, 221, 236, .96);
+}
+.hero-name .name {
+  font-family: "Outfit", "Space Grotesk", sans-serif;
+  font-weight: 600;
+  font-size: clamp(46px, 5.4vw, 78px);
+  line-height: 1.16;
+  padding-bottom: .06em;
+  letter-spacing: -.015em;
+  background: linear-gradient(90deg, #FFFFFF 0%, #EDE9F6 66%, #FCDDEC 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.hero-role {
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 500;
+  font-size: clamp(17px, 1.56vw, 22.5px);
+  line-height: 1.32;
+  color: rgba(252, 221, 236, .94);
+}
+
+.hero-bio {
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: clamp(15.5px, 1.35vw, 19.5px);
+  line-height: 1.56;
+  color: rgba(237, 233, 246, .86);
+  max-width: 60ch;
+}
+
+/* ---------- Band dividers & shared headers ---------- */
+.band {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(16px, 2vh, 22px);
+  transition: opacity .85s var(--ease), transform .95s var(--ease);
+}
+.skills-band { transition-delay: .1s; }
+.certs-band { transition-delay: .2s; }
+
+.horizon {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg,
+    rgba(182, 183, 252, .08) 0%,
+    rgba(252, 221, 236, .36) 25%,
+    rgba(182, 183, 252, .30) 75%,
+    rgba(178, 70, 141, .08) 100%);
+}
+
+.band-sub {
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 300;
+  font-size: clamp(13.5px, 1.1vw, 16px);
+  color: rgba(237, 233, 246, .52);
+}
+
+/* ---------- Band 2: Skills 4-column open cosmic strip ---------- */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(20px, 2.2vw, 32px);
+}
+
+.skill-col {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.skill-col h3 {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 500;
+  font-size: clamp(18px, 1.52vw, 22px);
+  line-height: 1.25;
+  color: rgba(255, 255, 255, .96);
+}
+.skill-col h3 i {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  flex: 0 0 auto;
+  background: var(--dot, #B6B7FC);
+  box-shadow: 0 0 12px var(--dot, #B6B7FC);
+}
+
+.skill-col p {
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: clamp(15px, 1.25vw, 18px);
+  line-height: 1.56;
+  color: rgba(237, 233, 246, .84);
+}
+
+/* ---------- Band 3: Certifications dark-nebula plates ---------- */
+.view-all {
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 400;
+  font-size: clamp(14px, 1.14vw, 16.5px);
+  color: rgba(252, 221, 236, .92);
+  text-decoration: none;
+  transition: color .25s ease, transform .25s var(--ease);
+}
+.view-all:hover { color: #FFFFFF; transform: translateX(3px); }
+
+.certs-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(16px, 1.6vw, 24px);
+}
+
+.cert-plate {
+  position: relative;
+  min-height: clamp(160px, 18.5vh, 198px);
+  padding: 20px 24px 18px;
+  border-radius: 14px;
+  overflow: hidden;
+  text-decoration: none;
+  color: var(--ink);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: linear-gradient(135deg, rgba(40, 25, 59, .78) 0%, rgba(20, 11, 32, .92) 100%);
+  border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+  box-shadow: 0 20px 40px -16px rgba(8, 3, 16, .62);
+  transition: transform .35s var(--ease), border-color .3s ease, box-shadow .35s var(--ease);
+}
+.cert-plate:hover {
+  transform: translateY(-6px);
+  border-color: color-mix(in srgb, var(--accent) 68%, transparent);
+  box-shadow: 0 26px 48px -14px rgba(8, 3, 16, .75), 0 0 28px -10px color-mix(in srgb, var(--accent) 42%, transparent);
+}
+.cert-plate:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+.plate-glow {
+  position: absolute;
+  right: -40px;
+  top: -64px;
+  width: 240px;
+  height: 190px;
+  border-radius: 50%;
+  background: var(--glow, #5B4A9E);
+  opacity: .42;
+  filter: blur(56px);
+  pointer-events: none;
+  transition: opacity .35s ease, transform .45s var(--ease);
+}
+.cert-plate:hover .plate-glow { opacity: .62; transform: scale(1.1); }
+
+.plate-arc {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 160px;
+  height: 160px;
+  color: var(--accent);
+  pointer-events: none;
+}
+
+.plate-num {
+  position: relative;
+  z-index: 1;
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-weight: 500;
+  font-size: clamp(13px, 1.04vw, 15px);
+  letter-spacing: .12em;
+  color: var(--accent);
+}
+
+.plate-foot {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 12px;
+}
+
+.plate-foot h3 {
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 500;
+  font-size: clamp(22px, 1.95vw, 28px);
+  line-height: 1.15;
+  color: rgba(255, 255, 255, .96);
+}
+.plate-foot p {
+  margin-top: 5px;
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: clamp(14px, 1.1vw, 16px);
+  color: rgba(237, 233, 246, .72);
+}
+
+.plate-arrow {
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 300;
+  font-size: 22px;
+  line-height: 1;
+  color: var(--accent);
+  opacity: .75;
+  transition: transform .3s var(--ease), opacity .3s ease;
+}
+.cert-plate:hover .plate-arrow { transform: translate(3px, -3px); opacity: 1; }
+
+/* ---------- intro animation ---------- */
+.intro .hero-band,
+.intro .band {
+  opacity: 0;
+  transform: translateY(22px);
+}
+
+/* ---------- responsive ---------- */
+@media (max-width: 1024px) {
+  .hero-band {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 28px;
+  }
+  .hero-copy { align-items: center; }
+  .band-meta { justify-content: center; }
+  .skills-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 26px 24px; }
+  .certs-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 640px) {
+  .about-page { padding: 86px 20px 48px; gap: 36px; }
+  .portrait-portal { width: 82vw; max-width: 320px; }
+  .band-meta { justify-content: space-between; text-align: left; }
+  .hero-copy { align-items: flex-start; text-align: left; }
+  .skills-grid,
+  .certs-grid { grid-template-columns: 1fr; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-band, .band, .cert-plate, .plate-glow, .plate-arrow { transition-duration: .15s; }
+}

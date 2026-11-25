@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>JXverse — Projects</title>
+<meta name="theme-color" content="#1C1026">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Space+Grotesk:wght@500;600&family=Outfit:wght@600;700&family=Fraunces:ital,opsz,wght@1,9..144,500&family=JetBrains+Mono:wght@600&family=Old+Standard+TT:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="nav.css">
+<link rel="stylesheet" href="projects.css">
+</head>
+<body class="intro">
+
+<!-- background: aurora glow + stars -->
+<div class="sky" aria-hidden="true">
+  <div class="glow g1"></div><div class="glow g2"></div><div class="glow g3"></div>
+  <canvas id="stars"></canvas>
+</div>
+
+<!-- top bar -->
+<header class="top">
+  <div class="nav-wrap">
+    <nav class="jx-nav" aria-label="Primary">
+      <a class="jx-home" href="index.html" aria-label="Home" title="Home">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M12 3.2L3.2 10.9a1.2 1.2 0 0 0 .8 2.1h1.5v7.2a.8.8 0 0 0 .8.8h4.2v-5.2h3V21h4.2a.8.8 0 0 0 .8-.8V13H20a1.2 1.2 0 0 0 .8-2.1L12 3.2z"/>
+        </svg>
+      </a>
+      <div class="jx-pill" id="jxPill">
+        <button class="jx-dots" id="jxDots" type="button" aria-label="Menu" aria-expanded="false">
+          <i></i><i></i><i></i>
+        </button>
+        <div class="jx-items">
+          <a class="jx-item" href="about.html" aria-label="About" data-label="About">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <circle cx="12" cy="7.5" r="4"/>
+              <path d="M4.5 20.5c0-3.9 3.4-6.8 7.5-6.8s7.5 2.9 7.5 6.8a1 1 0 0 1-1 1h-13a1 1 0 0 1-1-1z"/>
+            </svg>
+          </a>
+          <a class="jx-item is-current" href="projects.html" id="jxProjectsLink" aria-label="Projects" data-label="Projects" aria-current="page">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3" y="7" width="18" height="13" rx="2.5"/>
+              <path d="M8.5 7V5.4A1.4 1.4 0 0 1 9.9 4h4.2a1.4 1.4 0 0 1 1.4 1.4V7"/>
+              <path d="M3 12.2c3.2 1.7 6.2 2.4 9 2.4s5.8-.7 9-2.4"/>
+              <circle cx="8.5" cy="10.8" r="0.7" fill="currentColor" stroke="none"/>
+              <circle cx="15.5" cy="10.8" r="0.7" fill="currentColor" stroke="none"/>
+            </svg>
+          </a>
+          <button class="jx-item" id="jxContactBtn" type="button" aria-label="Contact" data-label="Contact">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M6.6 3.5a1.6 1.6 0 0 1 1.7.7l2 3.1a1.6 1.6 0 0 1-.2 2L8.7 10.7a12.4 12.4 0 0 0 4.6 4.6l1.4-1.4a1.6 1.6 0 0 1 2-.2l3.1 2a1.6 1.6 0 0 1 .7 1.7l-.5 2.4a1.8 1.8 0 0 1-1.9 1.4C10.5 20.8 3.2 13.5 2.8 5.9A1.8 1.8 0 0 1 4.2 4l2.4-.5z"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+      <button class="back-pill" id="backBtn" type="button" hidden>
+        <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M12.5 4.5L7 10l5.5 5.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>Categories</span>
+      </button>
+      <div class="jx-contact-pop" id="jxContactPop" hidden role="dialog" aria-label="Contact">
+        <strong>Get in Touch</strong>
+        <p>Currently seeking a software or web development internship. Contact details page coming soon.</p>
+        <a href="about.html">About Me →</a>
+      </div>
+    </nav>
+  </div>
+
+  <a class="brand" href="index.html"><img src="favicon.svg" alt=""><span>JXverse</span></a>
+</header>
+
+<!-- scroll-driven floating 3D card carousel -->
+<section class="showcase" id="showcase">
+  <div class="pin">
+    <h1 class="bigword" id="bigword" aria-hidden="true">
+      <span><b id="bwLine1">PROJECTS</b><b class="l2" id="bwLine2">&amp;ACTIVITIES</b></span>
+    </h1>
+    <canvas class="arc" id="bh" aria-hidden="true"></canvas>
+
+    <div class="track" id="track"><!-- cards are rendered by projects.js --></div>
+
+    <div class="hud">
+      <div class="counter"><span id="cur">01</span><i></i><span id="total">05</span></div>
+      <div class="caption-wrap">
+        <div class="caption" id="caption"></div>
+        <nav class="cat-tabs" id="catTabs" aria-label="Categories"></nav>
+      </div>
+      <div class="hint" id="hint">Scroll or drag ← → · click centre card to open</div>
+    </div>
+    <div class="progress"><div class="bar" id="bar"></div></div>
+  </div>
+</section>
+
+<script src="nav.js"></script>
+<script src="projects.js"></script>
+<script src="blackhole.js"></script>
+</body>
+</html>

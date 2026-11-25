@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>JXverse — About</title>
+<meta name="description" content="About Zhong Jiaxun — Year 2 IT student at Republic Polytechnic specialising in Full Stack Development.">
+<meta name="theme-color" content="#180D24">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&family=Outfit:wght@600;700&family=Space+Grotesk:wght@300;400;500&family=Syne:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="nav.css">
+<link rel="stylesheet" href="about.css">
+</head>
+<body class="intro">
+
+<!-- Deep space aurora + stars + subtle background orbital arcs -->
+<div class="sky" aria-hidden="true">
+  <div class="nebula n1"></div>
+  <div class="nebula n2"></div>
+  <div class="nebula n3"></div>
+  <div class="nebula n4"></div>
+  <svg class="bg-orbits" viewBox="0 0 1440 1024" preserveAspectRatio="xMidYMid slice">
+    <ellipse cx="720" cy="1160" rx="920" ry="320" fill="none" stroke="#FCDDEC" stroke-opacity="0.1" stroke-width="1"/>
+    <ellipse cx="720" cy="1190" rx="1020" ry="360" fill="none" stroke="#B6B7FC" stroke-opacity="0.07" stroke-width="0.9" stroke-dasharray="5 9"/>
+    <circle cx="242" cy="264" r="210" fill="none" stroke="#B6B7FC" stroke-opacity="0.08" stroke-width="0.9" stroke-dasharray="3 8"/>
+  </svg>
+  <div class="bg-word">ABOUT</div>
+  <canvas id="stars"></canvas>
+</div>
+
+<!-- Top navigation bar -->
+<header class="top">
+  <nav class="jx-nav" aria-label="Primary">
+    <a class="jx-home" href="index.html" aria-label="Home" title="Home">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M12 3.2L3.2 10.9a1.2 1.2 0 0 0 .8 2.1h1.5v7.2a.8.8 0 0 0 .8.8h4.2v-5.2h3V21h4.2a.8.8 0 0 0 .8-.8V13H20a1.2 1.2 0 0 0 .8-2.1L12 3.2z"/>
+      </svg>
+    </a>
+    <div class="jx-pill" id="jxPill">
+      <button class="jx-dots" id="jxDots" type="button" aria-label="Menu" aria-expanded="false">
+        <i></i><i></i><i></i>
+      </button>
+      <div class="jx-items">
+        <a class="jx-item is-current" href="about.html" aria-label="About" data-label="About" aria-current="page">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <circle cx="12" cy="7.5" r="4"/>
+            <path d="M4.5 20.5c0-3.9 3.4-6.8 7.5-6.8s7.5 2.9 7.5 6.8a1 1 0 0 1-1 1h-13a1 1 0 0 1-1-1z"/>
+          </svg>
+        </a>
+        <a class="jx-item" href="projects.html" aria-label="Projects" data-label="Projects">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="3" y="7" width="18" height="13" rx="2.5"/>
+            <path d="M8.5 7V5.4A1.4 1.4 0 0 1 9.9 4h4.2a1.4 1.4 0 0 1 1.4 1.4V7"/>
+            <path d="M3 12.2c3.2 1.7 6.2 2.4 9 2.4s5.8-.7 9-2.4"/>
+            <circle cx="8.5" cy="10.8" r="0.7" fill="currentColor" stroke="none"/>
+            <circle cx="15.5" cy="10.8" r="0.7" fill="currentColor" stroke="none"/>
+          </svg>
+        </a>
+        <button class="jx-item" id="jxContactBtn" type="button" aria-label="Contact" data-label="Contact">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M6.6 3.5a1.6 1.6 0 0 1 1.7.7l2 3.1a1.6 1.6 0 0 1-.2 2L8.7 10.7a12.4 12.4 0 0 0 4.6 4.6l1.4-1.4a1.6 1.6 0 0 1 2-.2l3.1 2a1.6 1.6 0 0 1 .7 1.7l-.5 2.4a1.8 1.8 0 0 1-1.9 1.4C10.5 20.8 3.2 13.5 2.8 5.9A1.8 1.8 0 0 1 4.2 4l2.4-.5z"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+    <div class="jx-contact-pop" id="jxContactPop" hidden role="dialog" aria-label="Contact">
+      <strong>Get in Touch</strong>
+      <p>Currently seeking a software or web development internship. Contact details page coming soon.</p>
+      <a href="projects.html">Explore Projects →</a>
+    </div>
+  </nav>
+
+  <a class="brand" href="index.html"><img src="favicon.svg" alt=""><span>JXverse</span></a>
+</header>
+
+<main class="about-page">
+  <!-- Band 1: Cosmic Saturn-ringed portrait planet + warm About Me -->
+  <section class="hero-band" aria-label="About Me">
+    <div class="portrait-portal">
+      <div class="portal-corona" aria-hidden="true"></div>
+      <svg class="ring-back" viewBox="0 0 446 396" fill="none" aria-hidden="true">
+        <ellipse cx="223" cy="198" rx="218" ry="64" transform="rotate(-17 223 198)" stroke="#B6B7FC" stroke-opacity="0.34" stroke-width="1.3"/>
+        <ellipse cx="223" cy="198" rx="192" ry="52" transform="rotate(-17 223 198)" stroke="#FCDDEC" stroke-opacity="0.22" stroke-width="1"/>
+      </svg>
+
+      <div class="orb-sphere">
+        <div class="orb-light" aria-hidden="true"></div>
+        <img class="orb-photo" src="img/about/portrait.png" alt="Portrait of Zhong Jiaxun" draggable="false">
+        <div class="orb-rim" aria-hidden="true"></div>
+      </div>
+
+      <svg class="ring-front" viewBox="0 0 446 396" fill="none" aria-hidden="true">
+        <defs>
+          <linearGradient id="rfGrad" x1="22" y1="258" x2="424" y2="138" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#B6B7FC" stop-opacity="0"/>
+            <stop offset="0.38" stop-color="#FCDDEC" stop-opacity="0.95"/>
+            <stop offset="0.74" stop-color="#B6B7FC" stop-opacity="0.8"/>
+            <stop offset="1" stop-color="#B2468D" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+        <path d="M22 258C98 292 262 256 424 138" stroke="url(#rfGrad)" stroke-width="2.2" stroke-linecap="round"/>
+        <g id="orbitMoon">
+          <circle cx="394" cy="158" r="11" fill="#FCDDEC" fill-opacity="0.34"/>
+          <circle cx="394" cy="158" r="5" fill="#FFFFFF"/>
+        </g>
+      </svg>
+    </div>
+
+    <div class="hero-copy">
+      <div class="band-meta">
+        <span class="mono-tag">01&nbsp;&nbsp;//&nbsp;&nbsp;ABOUT ME&nbsp;&nbsp;·&nbsp;&nbsp;1.3521° N, 103.8198° E</span>
+        <span class="mono-tag pink">OPEN TO INTERNSHIP</span>
+      </div>
+      <h1 class="hero-name">
+        <span class="hi">Hi!&nbsp;&nbsp;I'm</span>
+        <span class="name">Zhong Jiaxun</span>
+      </h1>
+      <p class="hero-role">Year 2 IT · Republic Polytechnic · Full Stack Development</p>
+      <p class="hero-bio">With foundational skills in JavaScript, Python, and MySQL, I enjoy building practical web features and testing applications. Outside of coding, I love animals and drawing — currently seeking a software or web development internship.</p>
+    </div>
+  </section>
+
+  <!-- Band 2: Open 4-column cosmic Skills constellation -->
+  <section class="band skills-band" aria-label="Skills and Capabilities">
+    <div class="horizon" aria-hidden="true"></div>
+    <div class="band-meta">
+      <h2 class="mono-tag">02&nbsp;&nbsp;//&nbsp;&nbsp;SKILLS &amp; CAPABILITIES</h2>
+      <span class="band-sub">Full Stack · DevOps · Visual Design</span>
+    </div>
+
+    <div class="skills-grid">
+      <div class="skill-col" style="--dot:#B6B7FC">
+        <h3><i aria-hidden="true"></i>Programming &amp; DB</h3>
+        <p>JavaScript · Python<br>MySQL · MongoDB</p>
+      </div>
+      <div class="skill-col" style="--dot:#FCDDEC">
+        <h3><i aria-hidden="true"></i>Web &amp; Tools</h3>
+        <p>Node.js · Express.js · HTTP<br>SonarQube · DevOps · Scrum</p>
+      </div>
+      <div class="skill-col" style="--dot:#9BB8FF">
+        <h3><i aria-hidden="true"></i>Design</h3>
+        <p>Adobe Illustrator · Photoshop<br>Figma (Basic)</p>
+      </div>
+      <div class="skill-col" style="--dot:#E6A8D4">
+        <h3><i aria-hidden="true"></i>Core &amp; Languages</h3>
+        <p>Teamwork · Communication<br>Chinese (Native) · English</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Band 3: 3 dark-nebula iridescent cosmic Certification plates -->
+  <section class="band certs-band" aria-label="Certifications">
+    <div class="horizon" aria-hidden="true"></div>
+    <div class="band-meta">
+      <h2 class="mono-tag">03&nbsp;&nbsp;//&nbsp;&nbsp;CERTIFICATIONS</h2>
+      <a class="view-all" href="projects.html?category=certifications">View all in Projects ↗</a>
+    </div>
+
+    <div class="certs-grid">
+      <a class="cert-plate" href="projects.html?category=certifications" style="--accent:#B6B7FC;--glow:#5B4A9E">
+        <div class="plate-glow" aria-hidden="true"></div>
+        <svg class="plate-arc" viewBox="0 0 160 160" fill="none" aria-hidden="true">
+          <circle cx="136" cy="24" r="92" stroke="currentColor" stroke-opacity="0.18" stroke-width="1"/>
+          <circle cx="136" cy="24" r="64" stroke="currentColor" stroke-opacity="0.12" stroke-width="0.8" stroke-dasharray="4 6"/>
+        </svg>
+        <span class="plate-num">01&nbsp;&nbsp;//&nbsp;&nbsp;CREDENTIAL 01</span>
+        <div class="plate-foot">
+          <div>
+            <h3>Certificate 01</h3>
+            <p>Issuing Organisation · Year</p>
+          </div>
+          <span class="plate-arrow" aria-hidden="true">↗</span>
+        </div>
+      </a>
+
+      <a class="cert-plate" href="projects.html?category=certifications" style="--accent:#FCDDEC;--glow:#8D366D">
+        <div class="plate-glow" aria-hidden="true"></div>
+        <svg class="plate-arc" viewBox="0 0 160 160" fill="none" aria-hidden="true">
+          <circle cx="136" cy="24" r="92" stroke="currentColor" stroke-opacity="0.18" stroke-width="1"/>
+          <circle cx="136" cy="24" r="64" stroke="currentColor" stroke-opacity="0.12" stroke-width="0.8" stroke-dasharray="4 6"/>
+        </svg>
+        <span class="plate-num">02&nbsp;&nbsp;//&nbsp;&nbsp;CREDENTIAL 02</span>
+        <div class="plate-foot">
+          <div>
+            <h3>Certificate 02</h3>
+            <p>Issuing Organisation · Year</p>
+          </div>
+          <span class="plate-arrow" aria-hidden="true">↗</span>
+        </div>
+      </a>
+
+      <a class="cert-plate" href="projects.html?category=certifications" style="--accent:#9BB8FF;--glow:#2F4E8A">
+        <div class="plate-glow" aria-hidden="true"></div>
+        <svg class="plate-arc" viewBox="0 0 160 160" fill="none" aria-hidden="true">
+          <circle cx="136" cy="24" r="92" stroke="currentColor" stroke-opacity="0.18" stroke-width="1"/>
+          <circle cx="136" cy="24" r="64" stroke="currentColor" stroke-opacity="0.12" stroke-width="0.8" stroke-dasharray="4 6"/>
+        </svg>
+        <span class="plate-num">03&nbsp;&nbsp;//&nbsp;&nbsp;CREDENTIAL 03</span>
+        <div class="plate-foot">
+          <div>
+            <h3>Certificate 03</h3>
+            <p>Issuing Organisation · Year</p>
+          </div>
+          <span class="plate-arrow" aria-hidden="true">↗</span>
+        </div>
+      </a>
+    </div>
+  </section>
+</main>
+
+<script src="nav.js"></script>
+<script>
+(() => {
+  requestAnimationFrame(() => document.body.classList.remove('intro'));
+
+  // Subtle twinkling starfield
+  const cv = document.getElementById('stars');
+  const ctx = cv.getContext('2d');
+  let stars = [];
+  const makeStars = () => {
+    const dpr = Math.min(2, window.devicePixelRatio || 1);
+    cv.width = innerWidth * dpr;
+    cv.height = innerHeight * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    stars = Array.from({ length: Math.round(innerWidth * innerHeight / 20000) }, () => ({
+      x: Math.random() * innerWidth,
+      y: Math.random() * innerHeight,
+      r: Math.random() * 1.4 + 0.4,
+      p: Math.random() * Math.PI * 2,
+      s: 0.4 + Math.random() * 0.9,
+    }));
+  };
+  makeStars();
+  window.addEventListener('resize', makeStars);
+
+  // Subtle orbiting moon gliding gently along the front arc of the Saturn ring
+  const moon = document.getElementById('orbitMoon');
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const cx = 223, cy = 198, rx = 218, ry = 64, rot = -17 * Math.PI / 180;
+  const cosR = Math.cos(rot), sinR = Math.sin(rot);
+
+  const tick = (t) => {
+    ctx.clearRect(0, 0, innerWidth, innerHeight);
+    for (const st of stars) {
+      ctx.globalAlpha = 0.25 + 0.45 * (0.5 + 0.5 * Math.sin(t / 1100 * st.s + st.p));
+      ctx.beginPath();
+      ctx.arc(st.x, st.y, st.r, 0, Math.PI * 2);
+      ctx.fillStyle = '#FCDDEC';
+      ctx.fill();
+    }
+
+    if (moon && !reduced) {
+      // Gently glide along the visible front sweep of the ellipse (-0.12 to 2.95 rad)
+      const angle = 0.08 + Math.sin(t * 0.00045) * 0.42;
+      const ex = Math.cos(angle) * rx;
+      const ey = Math.sin(angle) * ry;
+      const mx = cx + ex * cosR - ey * sinR;
+      const my = cy + ex * sinR + ey * cosR;
+      moon.setAttribute('transform', `translate(${(mx - 394).toFixed(2)}, ${(my - 158).toFixed(2)})`);
+    }
+
+    requestAnimationFrame(tick);
+  };
+  requestAnimationFrame(tick);
+})();
+</script>
+</body>
+</html>
