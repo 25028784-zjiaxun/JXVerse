@@ -28,7 +28,7 @@
 
   // Where "Click anywhere to explore" should go. Set this once page 2 exists,
   // e.g. NEXT_PAGE = '/about.html'
-  const NEXT_PAGE = 'projects.html';
+  const NEXT_PAGE = 'about.html';
 
   document.addEventListener('click', (e) => {
     if (e.target.closest('.nav')) return;
